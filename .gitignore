@@ -129,3 +129,21 @@ kernel/configs/android-*.cfg
 #Ignoring Android.bp link file
 #
 Android.bp
+# Vendored KernelSU non-kernel parts (userspace/management/docs)
+KernelSU/docs/
+KernelSU/userspace/
+KernelSU/manager/
+KernelSU/website/
+KernelSU/js/
+KernelSU/scripts/
+KernelSU/fastlane/
+KernelSU/uapi/
+KernelSU/repack_apk.py
+KernelSU/repack-config.example.json
+KernelSU/justfile
+KernelSU/Cargo.toml
+KernelSU/Cargo.lock
+KernelSU/AGENTS.md
+KernelSU/SECURITY.md
+KernelSU/.gitignore
+KernelSU/LICENSE

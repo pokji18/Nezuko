@@ -749,10 +749,6 @@ static int cpcap_battery_probe(struct platform_device *pdev)
 	if (error)
 		return error;
 
-	error = cpcap_battery_init_interrupts(pdev, ddata);
-	if (error)
-		return error;
-
 	error = cpcap_battery_init_iio(ddata);
 	if (error)
 		return error;
@@ -765,9 +761,13 @@ static int cpcap_battery_probe(struct platform_device *pdev)
 	psy_desc->type = POWER_SUPPLY_TYPE_BATTERY,
 	psy_desc->properties = cpcap_battery_props,
 	psy_desc->num_properties = ARRAY_SIZE(cpcap_battery_props),
-	psy_desc->get_property = cpcap_battery_get_property,
+	psy_desc->get_property = cpcap_battery_get_property;
 
 	psy_cfg.of_node = pdev->dev.of_node;
+
+	error = cpcap_battery_init_interrupts(pdev, ddata);
+	if (error)
+		return error;
 	psy_cfg.drv_data = ddata;
 
 	ddata->psy = devm_power_supply_register(ddata->dev, psy_desc,
